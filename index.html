@@ -4,181 +4,470 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-    <title>Haider Sherazi | Backend & Laravel Developer</title>
+    <title>Haider Sherazi | Laravel Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        },
+                        dark: '#030704',
+                        surface: '#051208',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Outfit', sans-serif;
+            background-color: #030704;
+            color: #dcfce7;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030704; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #166534; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #16a34a; 
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 0; /* particles fall behind main content */
+            background-color: transparent;
+        }
+        
+        .main-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .glass-nav {
+            background: rgba(3, 7, 4, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        
+        .glass-card {
+            background: rgba(5, 18, 8, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(34, 197, 94, 0.6);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px -10px rgba(34, 197, 94, 0.35);
+            background: rgba(10, 30, 15, 0.8);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #4ade80, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4);
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-300 antialiased selection:bg-indigo-500 selection:text-white">
+<body class="antialiased selection:bg-brand-500 selection:text-white font-sans text-brand-100">
+    
+    <!-- Animated particles background -->
+    <div id="particles-js"></div>
 
-    <nav class="fixed w-full bg-slate-900/90 backdrop-blur-sm border-b border-slate-800 z-50 h-20">
-        <div class="max-w-5xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="https://haidersherazi.netlify.app/" class="flex items-center">
-                <span class="text-white font-bold text-xl tracking-tight">Haider Sherazi<span class="text-indigo-500">.</span></span>
+    <nav class="fixed w-full glass-nav z-50 h-20">
+        <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="https://haidersherazi.netlify.app/" class="flex items-center group">
+                <span class="text-white font-display font-bold text-2xl tracking-tight group-hover:text-brand-300 transition-colors duration-300">Haider Sherazi<span class="text-brand-500">.</span></span>
             </a>
-            <div class="space-x-6 text-sm font-medium text-slate-300">
-                <a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a>
-                <a href="#skills" class="hover:text-indigo-400 transition-colors">Skills</a>
-                <a href="#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
+            <div class="flex items-center gap-5 sm:gap-8 text-sm font-medium text-brand-100">
+                <a href="#projects" class="hover:text-brand-400 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all after:duration-300">Projects</a>
+                <a href="#skills" class="hover:text-brand-400 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all after:duration-300">Skills</a>
+                <a href="#contact" class="hover:text-brand-400 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all after:duration-300">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section class="pt-32 pb-20 px-6 max-w-5xl mx-auto flex flex-col justify-center min-h-[80vh]">
-        <p class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-4">Hi, my name is</p>
-        <h1 class="text-5xl sm:text-7xl font-extrabold text-white tracking-tight mb-4">Haider Sherazi.</h1>
-        <h2 class="text-4xl sm:text-5xl font-bold text-slate-500 tracking-tight mb-8">I design and build scalable web systems.</h2>
-        <p class="max-w-2xl text-lg text-slate-400 leading-relaxed mb-10">
-            I'm a Laravel developer who enjoys building robust backend systems and dynamic web applications. I focus on writing clean code, designing efficient databases, and creating scalable solutions using Laravel and the TALL stack.        </p>
-        <div class="flex gap-4">
-            <a href="#projects" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-all duration-200">View My Work</a>
-            <a href="#contact" class="px-8 py-4 bg-transparent border border-slate-700 hover:border-slate-500 text-slate-300 font-semibold rounded-lg transition-all duration-200">Get in Touch</a>
-        </div>
-    </section>
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="pt-32 pb-20 px-6 max-w-6xl mx-auto flex flex-col justify-center min-h-[90vh]">
+            <div class="max-w-3xl">
+                <p class="text-brand-400 font-mono font-medium tracking-wide uppercase text-sm mb-5 flex items-center gap-3">
+                    <span class="w-8 h-[1px] bg-brand-400 inline-block"></span>
+                    Hi, my name is
+                </p>
+                <h1 class="text-5xl sm:text-7xl font-display font-extrabold text-white tracking-tight mb-4 animate-fade-in-up">Haider Sherazi.</h1>
+                <h2 class="text-4xl sm:text-6xl font-display font-bold text-brand-800 tracking-tight mb-8">
+                    <span class="text-gradient">I build scalable</span> web systems.
+                </h2>
+                <p class="max-w-2xl text-lg sm:text-xl text-brand-100/70 leading-relaxed mb-12 font-light">
+                    I'm a Laravel developer traversing the web, building robust backend systems and dynamic web applications. I focus on writing clean code, designing efficient databases, and creating scalable solutions via the TALL stack.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="#projects" class="px-8 py-4 bg-brand-500 hover:bg-brand-400 text-dark font-display font-bold rounded-lg transition-all duration-300 text-center shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] transform hover:-translate-y-1">View My Work</a>
+                    <a href="#contact" class="px-8 py-4 bg-transparent border border-brand-500/50 hover:border-brand-400 hover:bg-brand-900/30 text-brand-100 font-display font-semibold rounded-lg transition-all duration-300 text-center group">
+                        Get in Touch <i class="fa-solid fa-arrow-right ml-2 opacity-70 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<section id="projects" class="py-20 px-6 max-w-5xl mx-auto">
-        <div class="flex items-center gap-4 mb-16">
-            <h2 class="text-3xl font-bold text-white">Featured Projects</h2>
-            <div class="h-px bg-slate-800 flex-1"></div>
-        </div>
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 px-6 max-w-6xl mx-auto">
+            <div class="flex items-center gap-6 mb-20">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white whitespace-nowrap"><span class="text-brand-500">01.</span> Featured Projects</h2>
+                <div class="h-[1px] bg-brand-800/50 flex-1"></div>
+            </div>
 
-        <div class="space-y-32"> <div class="grid md:grid-cols-2 gap-8 items-start">
-                <div class="flex flex-col gap-6">
-                    <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700 flex flex-col justify-center shadow-xl z-10">
-                        <p class="text-indigo-400 font-mono text-sm mb-2">Featured Project</p>
-                        <h3 class="text-2xl font-bold text-white mb-4">EduFlow ERP</h3>
-                        <p class="text-slate-400 mb-6 leading-relaxed">
-                            A comprehensive School Management System designed to automate administrative workflows. Features a custom POS-style financial desk for instant fee collection, automated payroll generation, and a reactive gradebook dispatch system with role-based access control.
-                        </p>
-                        <ul class="flex flex-wrap gap-3 font-mono text-xs text-slate-300 mb-8">
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">Laravel 11</li>
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">Livewire 3</li>
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">Alpine.js</li>
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">Tailwind CSS</li>
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">MySQL</li>
+            <div class="space-y-32">
+                <!-- Project 1 -->
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="flex flex-col gap-6 relative z-10 md:pr-10">
+                        <p class="text-brand-400 font-mono text-sm mb-1 tracking-wider uppercase">Featured Project</p>
+                        <h3 class="text-3xl font-display font-bold text-white mb-2">EduFlow ERP</h3>
+                        <div class="glass-card rounded-xl p-6 shadow-2xl">
+                            <p class="text-brand-100/80 leading-relaxed font-light">
+                                A comprehensive School Management System designed to automate administrative workflows. Features a custom POS-style financial desk for instant fee collection, automated payroll generation, and a reactive gradebook dispatch system with role-based access control.
+                            </p>
+                        </div>
+                        <ul class="flex flex-wrap gap-3 font-mono text-xs text-brand-300 mt-4">
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Laravel 11</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Livewire 3</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Alpine.js</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Tailwind CSS</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">MySQL</li>
                         </ul>
-                        <div class="flex gap-4 mt-auto">
-                            <a href="https://youtu.be/vz6ECLw2o08?si=EIzhJAS96DBQI8q2" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-semibold flex items-center gap-2">
-                                <i class="fa-solid fa-play"></i> Watch Demo
+                        <div class="flex gap-6 mt-6">
+                            <a href="https://youtu.be/vz6ECLw2o08?si=EIzhJAS96DBQI8q2" target="_blank" class="text-brand-400 hover:text-brand-300 font-semibold flex items-center gap-2 group transition-colors">
+                                <i class="fa-solid fa-play group-hover:-translate-y-0.5 transition-transform"></i> Watch Demo
                             </a>
-                            <a href="https://github.com/haiderSherazi001/school-management" target="_blank" class="text-slate-400 hover:text-white text-sm font-semibold flex items-center gap-2">
-                                <i class="fa-brands fa-github text-lg"></i> Source Code
+                            <a href="https://github.com/haiderSherazi001/school-management" target="_blank" class="text-brand-100/60 hover:text-white font-semibold flex items-center gap-2 group transition-colors">
+                                <i class="fa-brands fa-github text-xl group-hover:-translate-y-0.5 transition-transform"></i> Source Code
                             </a>
                         </div>
                     </div>
 
-                    <div class="relative w-full h-80 bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden group flex items-center justify-center p-4">
-                        <img src="portfolio-project3-img.png" alt="Project Screenshot 3" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
+                    <div class="flex flex-col gap-6 w-full group perspective-1000">
+                        <div class="relative w-full h-80 glass-card rounded-xl overflow-hidden flex items-center justify-center p-2 mb-4 group-hover:scale-[1.02] transition-transform duration-500">
+                            <!-- Overlay effect -->
+                            <div class="absolute inset-0 bg-brand-900/40 group-hover:bg-transparent transition-colors duration-500 z-10 mix-blend-multiply"></div>
+                            <img src="portfolio-project3-img.png" alt="EduFlow Analytics Screenshot" class="w-full h-full object-cover rounded-lg">
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-6">
-                    <div class="relative w-full h-80 bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden group flex items-center justify-center p-4">
-                        <img src="portfolio-project2-img.png" alt="Project Screenshot 1" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
-                    </div>
+                <!-- Project 2 -->
+                <div class="grid md:grid-cols-2 gap-10 items-center flex-col-reverse md:flex-row-reverse">
                     
-                    <div class="relative w-full h-80 bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden group flex items-center justify-center p-4">
-                        <img src="portfolio-project3-img.png" alt="Project Screenshot 2" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 items-start flex-col-reverse md:flex-row-reverse">
-                
-                <div class="flex flex-col gap-6">
-                    <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700 flex flex-col justify-center shadow-xl z-10">
-                        <p class="text-indigo-400 font-mono text-sm mb-2">Portfolio Project</p>
-                        <h3 class="text-2xl font-bold text-white mb-4">Task Manager</h3>
-                        <p class="text-slate-400 mb-6 leading-relaxed">
-                            A robust CRUD application built to handle dynamic DOM manipulation and asynchronous database queries for seamless task organization, demonstrating deep competency with Eloquent and core system architectures.
-                        </p>
-                        <ul class="flex flex-wrap gap-3 font-mono text-xs text-slate-300 mb-8">
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">Laravel</li>
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">Blade</li>
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">jQuery</li>
-                            <li class="px-3 py-1 bg-slate-900 rounded-full border border-slate-700">Bootstrap</li>
+                    <div class="flex flex-col gap-6 md:order-2 md:pl-10 relative z-10">
+                        <p class="text-brand-400 font-mono text-sm md:text-right mb-1 tracking-wider uppercase">Portfolio Project</p>
+                        <h3 class="text-3xl font-display font-bold text-white md:text-right mb-2">Task Manager</h3>
+                        <div class="glass-card rounded-xl p-6 shadow-2xl">
+                            <p class="text-brand-100/80 leading-relaxed font-light">
+                                A robust CRUD application built to handle dynamic DOM manipulation and asynchronous database queries for seamless task organization, demonstrating deep competency with Eloquent and core system architectures.
+                            </p>
+                        </div>
+                        <ul class="flex flex-wrap gap-3 font-mono text-xs text-brand-300 mt-4 md:justify-end">
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Laravel</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Blade</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">jQuery</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Bootstrap</li>
                         </ul>
-                        <div class="flex gap-4 mt-auto">
-                            <a href="#" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-semibold flex items-center gap-2">
-                                <i class="fa-solid fa-play"></i> Watch Demo
-                            </a>
-                            <a href="https://github.com/haiderSherazi001/task-manager" target="_blank" class="text-slate-400 hover:text-white text-sm font-semibold flex items-center gap-2">
-                                <i class="fa-brands fa-github text-lg"></i> Source Code
+                        <div class="flex gap-6 mt-6 md:justify-end">
+                            <!-- <a href="#" target="_blank" class="text-brand-400 hover:text-brand-300 font-semibold flex items-center gap-2 group transition-colors">
+                                <i class="fa-solid fa-play group-hover:-translate-y-0.5 transition-transform"></i> Watch Demo
+                            </a> -->
+                            <a href="https://github.com/haiderSherazi001/task-manager" target="_blank" class="text-brand-100/60 hover:text-white font-semibold flex items-center gap-2 group transition-colors">
+                                <i class="fa-brands fa-github text-xl group-hover:-translate-y-0.5 transition-transform"></i> Source Code
                             </a>
                         </div>
                     </div>
 
-                    <div class="relative w-full h-80 bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden group flex items-center justify-center p-4">
-                        <img src="tsk-mngr1.png" alt="Task Hub Screenshot 3" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
+                    <div class="flex flex-col gap-6 md:order-1 w-full group perspective-1000">
+                        <div class="relative w-full h-80 glass-card rounded-xl overflow-hidden flex items-center justify-center p-2 mb-4 group-hover:scale-[1.02] transition-transform duration-500">
+                            <!-- Overlay effect -->
+                            <div class="absolute inset-0 bg-brand-900/40 group-hover:bg-transparent transition-colors duration-500 z-10 mix-blend-multiply"></div>
+                            <img src="tsk-mngr1.png" alt="Task Manager List View Screenshot" class="w-full h-full object-cover rounded-lg">
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-6">
-                    <div class="relative w-full h-80 bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden group flex items-center justify-center p-4">
-                        <img src="tsk-mngr2.png" alt="Task Hub Screenshot 1" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
+                <!-- Project 3 -->
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="flex flex-col gap-6 relative z-10 md:pr-10">
+                        <p class="text-brand-400 font-mono text-sm mb-1 tracking-wider uppercase">Project</p>
+                        <h3 class="text-3xl font-display font-bold text-white mb-2">AI Slide Generator</h3>
+                        <div class="glass-card rounded-xl p-6 shadow-2xl">
+                            <p class="text-brand-100/80 leading-relaxed font-light">
+                                A web application that automatically generates beautiful PowerPoint presentations from PDFs, images, or topic inputs using Generative AI. Designed to help teachers and students quickly create high-quality educational slides with minimal effort.
+                            </p>
+                        </div>
+                        <ul class="flex flex-wrap gap-3 font-mono text-xs text-brand-300 mt-4">
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Laravel</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">JavaScript</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Tailwind</li>
+                            <li class="px-3 py-1.5 glass-card rounded-full whitespace-nowrap">Reveal.js</li>
+                        </ul>
+                        <div class="flex gap-6 mt-6">
+                            <a href="https://ai-powered-educational-slide-generator.onrender.com/" target="_blank" class="text-brand-400 hover:text-brand-300 font-semibold flex items-center gap-2 group transition-colors">
+                                <i class="fa-solid fa-up-right-from-square group-hover:-translate-y-0.5 transition-transform"></i> Live Project
+                            </a>
+                            <a href="https://github.com/haiderSherazi001/AI-Powered-Educational-Slide-Generator" target="_blank" class="text-brand-100/60 hover:text-white font-semibold flex items-center gap-2 group transition-colors">
+                                <i class="fa-brands fa-github text-xl group-hover:-translate-y-0.5 transition-transform"></i> Source Code
+                            </a>
+                        </div>
                     </div>
-                    
-                    <div class="relative w-full h-80 bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden group flex items-center justify-center p-4">
-                        <img src="tsk-mngr3.png" alt="Task Hub Screenshot 2" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
+
+                    <div class="flex flex-col gap-6 w-full group perspective-1000">
+                        <div class="relative w-full h-80 glass-card rounded-xl overflow-hidden flex items-center justify-center p-2 mb-4 group-hover:scale-[1.02] transition-transform duration-500">
+                            <div class="absolute inset-0 bg-brand-900/40 group-hover:bg-transparent transition-colors duration-500 z-10 mix-blend-multiply"></div>
+                            <img src="slide-gen.png" alt="Slide Generator Screenshot" class="w-full h-full object-cover rounded-lg">
+                        </div>
                     </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 px-6 max-w-6xl mx-auto">
+            <div class="flex items-center gap-6 mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white whitespace-nowrap"><span class="text-brand-500">02.</span> Technologies</h2>
+                <div class="h-[1px] bg-brand-800/50 flex-1"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-brands fa-laravel text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">Laravel & PHP</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-solid fa-bolt text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">Livewire / Volt</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-brands fa-html5 text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">HTML, CSS & JS</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-brands fa-css3-alt text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">Tailwind CSS</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-solid fa-code text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">Alpine.js</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-solid fa-database text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">MySQL / Eloquent</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-brands fa-js-square text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">jQuery</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-brands fa-bootstrap text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">Bootstrap</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-brands fa-git-alt text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">Git & GitHub</span>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4 group">
+                    <i class="fa-brands fa-bitbucket text-brand-500 text-3xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-semibold text-white tracking-wide">Bitbucket</span>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <section id="skills" class="py-20 px-6 max-w-5xl mx-auto">
-        <div class="flex items-center gap-4 mb-12">
-            <h2 class="text-3xl font-bold text-white">Technologies I Work With</h2>
-            <div class="h-px bg-slate-800 flex-1"></div>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Laravel & PHP</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Livewire / Volt</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Html, CSS & JS</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Tailwind CSS</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Alpine.js</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">MySQL / Eloquent</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">jQuery & JavaScript</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Bootstrap</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Git & GitHub</div>
-            <div class="p-4 border border-slate-800 rounded-lg bg-slate-900 text-center text-slate-300 font-medium hover:border-indigo-500/50 transition-colors">Bitbucket</div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-32 px-6 max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl font-bold text-white mb-6">Let's build something.</h2>
-        <p class="text-slate-400 mb-12 text-lg max-w-2xl mx-auto">
-            I am currently open for full-time opportunities, contract work, and freelance projects. Whether you need a complex system built from scratch or legacy code maintained, my inbox is open.
-        </p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-12">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mrhyder29@gmail.com" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-indigo-500 transition-colors text-slate-300 hover:text-white">
-                <i class="fa-regular fa-envelope text-xl text-indigo-400"></i>
-                <span class="font-medium">mrhyder29@gmail.com</span>
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 px-6 max-w-4xl mx-auto text-center relative">
+            <p class="text-brand-500 font-mono text-sm mb-3 font-semibold tracking-wider">03. What's Next?</p>
+            <h2 class="text-5xl font-display font-bold text-white mb-8">Get In Touch</h2>
+            <p class="text-brand-100/70 mb-14 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                I am currently open for full-time opportunities, contract work, and freelance projects. Whether you need a complex system built from scratch or legacy code maintained, my inbox is open.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mrhyder29@gmail.com" target="_blank" class="glass-card flex items-center justify-center gap-4 p-5 rounded-xl hover:text-white group">
+                    <div class="w-10 h-10 rounded-full bg-brand-900/50 flex items-center justify-center group-hover:bg-brand-500 transition-colors">
+                        <i class="fa-regular fa-envelope text-xl text-brand-400 group-hover:text-dark transition-colors"></i>
+                    </div>
+                    <span class="font-semibold tracking-wide">Email Me</span>
+                </a>
+                <a href="https://wa.me/+923431830998" target="_blank" class="glass-card flex items-center justify-center gap-4 p-5 rounded-xl hover:text-white group">
+                    <div class="w-10 h-10 rounded-full bg-brand-900/50 flex items-center justify-center group-hover:bg-brand-500 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-xl text-brand-400 group-hover:text-dark transition-colors"></i>
+                    </div>
+                    <span class="font-semibold tracking-wide">WhatsApp</span>
+                </a>
+                <a href="https://www.linkedin.com/in/sherix998/" target="_blank" class="glass-card flex items-center justify-center gap-4 p-5 rounded-xl hover:text-white group">
+                    <div class="w-10 h-10 rounded-full bg-brand-900/50 flex items-center justify-center group-hover:bg-brand-500 transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl text-brand-400 group-hover:text-dark transition-colors"></i>
+                    </div>
+                    <span class="font-semibold tracking-wide">LinkedIn</span>
+                </a>
+                <a href="https://github.com/haiderSherazi001" target="_blank" class="glass-card flex items-center justify-center gap-4 p-5 rounded-xl hover:text-white group">
+                    <div class="w-10 h-10 rounded-full bg-brand-900/50 flex items-center justify-center group-hover:bg-brand-500 transition-colors">
+                        <i class="fa-brands fa-github text-xl text-brand-400 group-hover:text-dark transition-colors"></i>
+                    </div>
+                    <span class="font-semibold tracking-wide">GitHub</span>
+                </a>
+            </div>
+            
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mrhyder29@gmail.com" class="inline-block px-10 py-5 bg-transparent border-2 border-brand-500 text-brand-400 hover:bg-brand-500 hover:border-transparent hover:text-dark font-display font-bold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.1)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]">
+                Say Hello
             </a>
-            <a href="https://wa.me/+923431830998" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-indigo-500 transition-colors text-slate-300 hover:text-white">
-                <i class="fa-brands fa-whatsapp text-xl text-indigo-400"></i>
-                <span class="font-medium">+92 343 1830998</span>
-            </a>
-            <a href="https://www.linkedin.com/in/sherix998/" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-indigo-500 transition-colors text-slate-300 hover:text-white">
-                <i class="fa-brands fa-linkedin text-xl text-indigo-400"></i>
-                <span class="font-medium">LinkedIn</span>
-            </a>
-            <a href="https://github.com/haiderSherazi001" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-indigo-500 transition-colors text-slate-300 hover:text-white">
-                <i class="fa-brands fa-github text-xl text-indigo-400"></i>
-                <span class="font-medium">GitHub</span>
-            </a>
-        </div>
-    </section>
+        </section>
 
-    <footer class="py-8 text-center text-slate-500 text-sm border-t border-slate-800 mt-10">
-        <p>Designed & Built by Haider Sherazi</p>
-    </footer>
+        <footer class="py-10 text-center text-brand-100/50 text-sm font-mono mt-10">
+            <p class="hover:text-brand-400 transition-colors duration-300 cursor-default">Designed & Built by Haider Sherazi</p>
+        </footer>
+    </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS("particles-js", {
+                    "particles": {
+                        "number": {
+                            "value": 45,
+                            "density": {
+                                "enable": true,
+                                "value_area": 900
+                            }
+                        },
+                        "color": {
+                            "value": "#22c55e"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.4,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": false,
+                                "speed": 40,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#22c55e",
+                            "opacity": 0.15,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 1.5,
+                            "direction": "none",
+                            "random": true,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": true,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "window",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 180,
+                                "line_linked": {
+                                    "opacity": 0.35
+                                }
+                            },
+                            "push": {
+                                "particles_nb": 3
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+        });
+    </script>
 </body>
 </html>
